@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "ghdeploy": "ng build --prod --base-href='/'"
+    "ghdeploy": "ng deploy --base-href=https://psychomantis22.github.io/cabaldb/"
   },
   "private": true,
   "dependencies": {
