@@ -1,0 +1,23 @@
+.wrapper {
+    padding: 20px;
+}
+
+.result-container {
+    max-height: 660px;
+    overflow-y: auto;
+}
+
+button {
+    background-color: #303134;
+    border: 1px solid #303134;
+    border-radius: 4px;
+    color: #e8eaed;
+    font-size: 14px;
+    padding: 0 16px;
+    line-height: 27px;
+    height: 36px;
+    min-width: 54px;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+}

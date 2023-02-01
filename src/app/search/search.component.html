@@ -1,0 +1,16 @@
+<div class="search-container">
+    <form class="search-form">
+        <mat-form-field class="search-full-width" appearance="fill">
+            <mat-label>Informe o nome do Item</mat-label>
+            <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                    {{option.nome}} - {{option.tipo}}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+        <div style="text-align: center;">
+            <button (click)="pesquisar()">Pesquisar</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,13 @@
+.logo {
+    height: calc(100% - 600px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.logo div {
+    max-height: 160px;
+    height: 100%;
+    margin-top: auto;
+}
