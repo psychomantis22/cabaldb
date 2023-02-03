@@ -2,11 +2,11 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
-import itemsData from '../../assets/items.json';
-import itemDgData from '../../assets/item_dg.json';
+import autocompleteData from '../../assets/autocomplete-data.json';
+import itemDgData from '../../assets/item-dg.json';
 import {MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 
-export interface Item {
+export interface AutocompleteItem {
   id: number;
   nome: string;
   tipo: string;
@@ -15,6 +15,8 @@ export interface Item {
 export interface ItemDg {
   id_item: number;
   nome_item: string;
+  tipo_item: string;
+  id_dg: number;
   nome_dg: string;
 }
 
@@ -26,10 +28,10 @@ export interface ItemDg {
 export class SearchComponent implements OnInit {
   constructor(public dialog: MatDialog) {}
 
-  myControl = new FormControl<string | Item>('');
-  options: Item[] = itemsData.sort((a,b) => a.nome.localeCompare(b.nome));
-  filteredOptions: Observable<Item[]>;
-  selectedItem: Item;
+  myControl = new FormControl<string | AutocompleteItem>('');
+  options: AutocompleteItem[] = autocompleteData.sort((a,b) => a.nome.toLowerCase().replace('(elite)', '').trim().localeCompare(b.nome.toLowerCase().replace('(elite)', '').trim()));
+  filteredOptions: Observable<AutocompleteItem[]>;
+  selectedItem: AutocompleteItem;
 
   ngOnInit() {
     this.filteredOptions = this.myControl.valueChanges.pipe(
@@ -41,17 +43,17 @@ export class SearchComponent implements OnInit {
     );
   }
 
-  displayFn(item: Item): string {
+  displayFn(item: AutocompleteItem): string {
     return item && item.nome ? item.nome : '';
   }
 
-  private _filter(nome: string): Item[] {
+  private _filter(nome: string): AutocompleteItem[] {
     const filterValue = nome.toLowerCase();
     return this.options.filter(option => option.nome.toLowerCase().includes(filterValue) || option.tipo.toLowerCase().includes(filterValue));
   }
 
   pesquisar() {
-    this.selectedItem = this.myControl.value as Item;
+    this.selectedItem = this.myControl.value as AutocompleteItem;
 
     if (this.selectedItem && this.selectedItem.id) {
       const dialogRef = this.dialog.open(SearchDialog, {
@@ -72,11 +74,12 @@ export class SearchComponent implements OnInit {
   styleUrls: ['./search.component-dialog.css']
 })
 export class SearchDialog {
-  dgList: ItemDg[] = itemDgData.filter((idg) => this.item && idg.id_item == this.item.id);
-  displayedColumns = ['nome_dg'];
+  itemDgList: ItemDg[] = this.autocompleteItem.tipo === 'Calabouco' ? itemDgData.filter((idg) => this.autocompleteItem && idg.id_dg == this.autocompleteItem.id) : itemDgData.filter((idg) => this.autocompleteItem && idg.id_item == this.autocompleteItem.id);
+  displayedColumns = this.autocompleteItem.tipo === 'Calabouco' ? ['nome_item', 'tipo_item'] : ['nome_dg'];
+  title = this.autocompleteItem.tipo === 'Calabouco' ? this.autocompleteItem.nome : this.autocompleteItem.nome + ' - ' + this.autocompleteItem.tipo
 
   constructor(public dialogRef: MatDialogRef<SearchDialog>,
-    @Inject(MAT_DIALOG_DATA) public item: Item) { }
+    @Inject(MAT_DIALOG_DATA) public autocompleteItem: AutocompleteItem) { }
 
   close(): void {
     this.dialogRef.close();
