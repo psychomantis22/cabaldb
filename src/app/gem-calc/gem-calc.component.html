@@ -1,0 +1,24 @@
+<div class="gemcalc-container">
+    <div style="display: flex; justify-content: space-between;">
+        <mat-form-field style="width: 300px;">
+            <mat-label>Preço do card e-coin em alzes</mat-label>
+            <input type="number" min="1" [(ngModel)]="preco_card" matInput>
+        </mat-form-field>
+        <mat-form-field style="width: 150px;">
+            <mat-label>Gemas por card</mat-label>
+            <input type="number" min="1" [(ngModel)]="gemas_por_card" matInput>
+        </mat-form-field>
+    </div>
+    <div class="button-container">
+        <button class="dark-button" (click)="calcGem()" mat-raised-button>Calcular</button>
+        <button class="dark-button" routerLink="">Voltar</button>
+    </div>
+
+    <div class="result-container" *ngIf="isResultVisible">
+        <p>
+            <input type="number" min="1" [(ngModel)]="quantidade_gema" style="width: 60px; height: 30px; text-align: center;">
+            {{quantidade_gema != 1 ? "gemas custam" : "gema custa"}} {{(preco_card / gemas_por_card) * quantidade_gema | number: '1.0-0' }} 
+            alzes
+        </p>
+    </div>
+</div>

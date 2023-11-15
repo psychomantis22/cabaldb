@@ -1,0 +1,12 @@
+.gemcalc-container {
+    width: 500px;
+    margin: auto;
+}
+
+.result-container {
+    margin-top: 20px;
+    border-radius: 20px;
+    background-color: rgb(255, 228, 196);
+    text-align: center;
+    line-height: 80px;
+}

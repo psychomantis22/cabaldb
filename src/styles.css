@@ -3,4 +3,28 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background: #202124; }
 
+.button-container {
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    width: 250px;
+    margin: auto;
+}
+
+.dark-button {
+    background-color: #303134;
+    border: 1px solid #303134;
+    border-radius: 4px;
+    color: #e8eaed;
+    font-size: 14px;
+    padding: 0 16px;
+    line-height: 27px;
+    height: 36px;
+    min-width: 54px;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    width: 100px;
+}
+
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";

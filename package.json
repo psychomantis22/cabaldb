@@ -5,7 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "watch": "ng build --watch --configuration development",
+    "watch": "ng serve --watch --configuration development",
     "test": "ng test",
     "ghdeploy": "ng deploy --base-href=https://psychomantis22.github.io/cabaldb/"
   },
@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^15.1.3",
-    "@angular/cli": "~15.1.3",
+    "@angular/cli": "^15.2.10",
     "@angular/compiler-cli": "^15.1.0",
     "@types/jasmine": "~4.3.0",
     "angular-cli-ghpages": "^1.0.5",
