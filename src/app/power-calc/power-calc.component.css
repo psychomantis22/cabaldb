@@ -1,0 +1,21 @@
+.powercalc-container {
+    width: 700px;
+    margin: auto;
+}
+
+.drawer-container {
+    width: 700px;
+    height: 500px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 5px 5px 10px #000000;
+    padding: 20px;
+}
+
+.drawer-sidenav {
+    padding: 20px;
+}
+
+.stat-table {
+    
+}

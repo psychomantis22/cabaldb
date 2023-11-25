@@ -1,0 +1,107 @@
+<div class="powercalc-container">
+    <mat-drawer-container class="drawer-container" autosize>
+        <mat-drawer #drawer class="drawer-sidenav" mode="side">
+            <h4>Parâmetros</h4>
+
+            <div style="display: flex; flex-wrap: wrap;">
+                <div style="flex: 50%">
+                    <h5>Quanto de CP dá 1 ponto no status</h5>
+                    <div style="width: 350px; display: flex; flex-wrap: wrap;">
+                        <mat-form-field style="flex: 100%;">
+                            <mat-label>Amplificação</mat-label>
+                            <input type="number" min="1" step="0.1" [(ngModel)]="possibleStats[0].cp" matInput>
+                        </mat-form-field>
+                        <mat-form-field style="flex: 100%;">
+                            <mat-label>Danos Críticos</mat-label>
+                            <input type="number" min="1" step="0.1" [(ngModel)]="possibleStats[1].cp" matInput>
+                        </mat-form-field>
+                        <mat-form-field style="flex: 100%;">
+                            <mat-label>Ataque</mat-label>
+                            <input type="number" min="1" step="0.1" [(ngModel)]="possibleStats[2].cp" matInput>
+                        </mat-form-field>
+                        <mat-form-field style="flex: 100%;">
+                            <mat-label>Perfuração</mat-label>
+                            <input type="number" min="1" step="0.1" [(ngModel)]="possibleStats[3].cp" matInput>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div style="flex: 50%; display: none;">
+                    <h5>Pesos para Dano</h5>
+                    <div style="width: 350px; display: flex; flex-wrap: wrap;">
+                        <mat-form-field style="flex: 50%;">
+                            <mat-label>Amplificação</mat-label>
+                            <input type="number" min="1" step="0.1" [(ngModel)]="possibleStats[0].dmg" matInput>
+                        </mat-form-field>
+                        <mat-form-field style="flex: 50%;">
+                            <mat-label>Danos Críticos</mat-label>
+                            <input type="number" min="1" step="0.1" [(ngModel)]="possibleStats[1].dmg" matInput>
+                        </mat-form-field>
+                        <mat-form-field style="flex: 50%;">
+                            <mat-label>Ataque</mat-label>
+                            <input type="number" min="1" step="0.1" [(ngModel)]="possibleStats[2].dmg" matInput>
+                        </mat-form-field>
+                        <mat-form-field style="flex: 50%;">
+                            <mat-label>Perfuração</mat-label>
+                            <input type="number" min="1" step="0.1" [(ngModel)]="possibleStats[3].dmg" matInput>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" mat-raised-button color="primary" (click)="drawer.toggle()">
+                Fechar
+            </button>
+        </mat-drawer>
+
+        <div class="drawer-sidenav-content">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <mat-form-field>
+                    <mat-label>Status</mat-label>
+                    <mat-select [(ngModel)]="selectedStatusCode">
+                        <mat-option *ngFor="let status of possibleStats" [value]="status.code">{{status.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Valor</mat-label>
+                    <input type="number" min="1" [(ngModel)]="selectedStatusValue" matInput>
+                </mat-form-field>
+
+                <button type="button" mat-raised-button color="primary" (click)="addStat()">
+                    Adicionar
+                </button>
+            </div>
+
+            <div class="button-container" style="width: 350px; margin-top: 20px;">
+                <button class="dark-button" (click)="drawer.toggle()">Configurar</button>
+                <button class="dark-button" (click)="clear()">Limpar</button>
+                <button class="dark-button" routerLink="">Voltar</button>
+            </div>
+
+            <div *ngIf="selectedStats.length > 0" style="display: flex; flex-wrap: wrap;">
+                <div style="flex: 50%;">
+                    <mat-card>
+                        <mat-card-content>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Status</th>
+                                        <th>Valor</th>
+                                        <th>CP</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="table-striped">
+                                    <tr *ngFor="let stat of selectedStats">
+                                        <td>{{stat.status.name}}</td>
+                                        <td>{{stat.value}}</td>
+                                        <td>{{stat.status.cp * stat.value}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+            </div>
+        </div>
+    </mat-drawer-container>
+</div>
