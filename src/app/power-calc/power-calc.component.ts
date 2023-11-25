@@ -19,10 +19,15 @@ interface statModel {
 })
 export class PowerCalcComponent {
   possibleStats : possibleStatModel[] = [
-    { code: 'amp', name: 'Amplificação', cp: 348.8, dmg: 1 },
-    { code: 'dc', name: 'Danos Críticos', cp: 176.45, dmg: 1.6 },
-    { code: 'atk', name: 'Ataque', cp: 34.6, dmg: 13 },
-    { code: 'perf', name: 'Perfuração', cp: 70.93, dmg: 3 }
+    { code: 'amp', name: 'Amplificação', cp: 348.8, dmg: 0 },
+    { code: 'dc', name: 'Danos Críticos', cp: 176.45, dmg: 0 },
+    { code: 'atk', name: 'Ataque', cp: 34.6, dmg: 0 },
+    { code: 'perf', name: 'Perfuração', cp: 70.93, dmg: 0 },
+    { code: 'reddanos', name: 'Redução de Danos', cp: 19.5, dmg: 0 },
+    { code: 'ac', name: 'Acerto', cp: 6.5, dmg: 0 },
+    { code: 'prec', name: 'Precisão', cp: 3, dmg: 0 },
+    { code: 'ev', name: 'Evasão', cp: 2.4, dmg: 0 },
+    { code: 'def', name: 'Defesa', cp: 21.2, dmg: 0 }
   ]
 
   selectedStats :statModel[] = [];
